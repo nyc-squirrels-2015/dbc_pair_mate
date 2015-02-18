@@ -31,3 +31,7 @@ This will create a column author_id, which correctly refers to users(id).
 And in your model, you write
 
 belongs_to :author, class_name: "User"
+
+
+  StudentSchedule.select( "student_schedules.*").joins(:schedule).where( :studentSchedules =>{group_id: 1},
+                                                                                  :schedules=> {start_datetime: Time.now..(Time.now.midnight+14.day)});
