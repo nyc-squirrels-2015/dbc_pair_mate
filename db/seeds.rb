@@ -1,0 +1,13 @@
+group1 = Group.create({name: "Squirrels"});
+
+userJohn = Student.create({fname: "John", lname: "Smith", email: "js@gmail.com", password: "123", group: group1})
+userJenny = Student.create({fname: "Jenny", lname: "Portman", email: "jp@gmail.com", password: "123",group: group1})
+
+schedule1 = Schedule.create({start_datetime: "2015-03-03 17:00:00",end_datetime: "2015-03-03 18:00:00", agenda:"week 1 challenge 1"})
+schedule2 = Schedule.create({start_datetime: "2015-03-03 12:00:00",end_datetime: "2015-03-03 13:00:00", agenda:"week 1 challenge 1"})
+
+schedule3 = Schedule.create({start_datetime: "2015-03-03 12:00:00",end_datetime: "2015-03-03 13:00:00", agenda:"week 2 challenge 1"})
+
+StudentSchedule.create({student: userJohn, schedule: schedule1, group: userJohn.group})
+StudentSchedule.create({student: userJohn, schedule: schedule2, group: userJohn.group})
+StudentSchedule.create({student: userJohn, schedule: schedule3, group: userJohn.group})
