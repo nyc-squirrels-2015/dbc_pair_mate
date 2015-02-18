@@ -11,10 +11,6 @@ def group_by_date_of_week(schedules)
   map_out
 end
 
-def  check_user_session
-  if !current_user
-    redirect '/'
-  end
-end
+
 
 

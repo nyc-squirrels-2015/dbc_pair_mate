@@ -1,14 +1,17 @@
 require "json"
 
 get '/group/:id/schedule' do |id|
-  check_user_session
-  schedules = StudentSchedule.select( "student_schedules.*").joins(:schedule)
-                                .where( :student_schedules =>{group_id: id, pair_student_id: nil},
-                                        :schedules=> {start_datetime: Time.now..(Time.now.midnight+14.day)})
+  if current_user == nil
+    redirect '/'
+  else
+    schedules = StudentSchedule.select( "student_schedules.*").joins(:schedule)
+                                  .where( :student_schedules =>{group_id: id, pair_student_id: nil},
+                                          :schedules=> {start_datetime: Time.now..(Time.now.midnight+14.day)})
 
-  @listings = group_by_date_of_week(schedules)
-  @group_id = id;
-  erb :view_schedules
+    @listings = group_by_date_of_week(schedules)
+    @group_id = id;
+    erb :view_schedules
+  end
 end
 
 

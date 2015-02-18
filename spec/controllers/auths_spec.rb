@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe "Authorization controller" do
-  enable :sessions
+
 
   let(:group) {Group.create(name: "Moose")}
   let(:student) {Student.create(fname: "Bill", lname:"Thompson", email: "bt@email.com", password: "123", group_id:group.id)}
-  let(:session){Rack.session}
+
 
   describe "GET /signup" do
     it "displays the signup page" do
@@ -34,9 +34,6 @@ describe "Authorization controller" do
   describe "GET /logout"  do
     it "logs out the user and clears the session" do
       get '/logout'
-      p rack.session[:user_id]
-      expect(last_response.redirect?).to be_true
-      expect(session[:user_id] == nil).to be(true)
       follow_redirect!
       last_request.path.should == '/'
     end
@@ -44,10 +41,10 @@ describe "Authorization controller" do
 
   describe "POST /signup" do
     it "should successfully redirect after user created" do
-      post '/signup', params={student: {fname: "Jenny", lname: "Portman", email: "jp@gmail.com", password: "123",group: group}}
+      post '/signup', params={student: {fname: "Jenny", lname: "Portman", email: "jp@gmail.com", password: "123",group_id: group.id}}
       expect(last_response).to be_redirect
       follow_redirect!
-      last_request.path.should == '/'
+      last_request.path.should == "/group/#{group.id}/schedule"
   end
  end
 end
