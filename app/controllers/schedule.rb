@@ -1,5 +1,8 @@
 require "json"
 
+
+@message = nil
+
 get '/group/:id/schedule' do |id|
   if current_user == nil
     redirect '/'

@@ -1,5 +1,7 @@
 <div class="row" class="listing-header" id="listing-header" data-group-id="<%=@group_id%>">
-  <div class="alert alert-success" role="alert">Click on the check box across a pairing to accept it</div>
+
+  <div class="alert alert-success" role="alert">Click on the check box across a time slot to accept it</div>
+
 <!--   Filter panel and button
  -->
   <div class="col-md-12 calendar-row">
@@ -33,7 +35,7 @@
   <div class="col-md-3 calendar-row">
       <div class="calendar-day-header"><h4><%=date_of_week%></h4></div>
       <%studentschedules.each do |studentschedule| %>
-        <div class="calendar-listing" data-id="<%=studentschedule.id%>">
+        <div class="calendar-listing" id="calendar-listing-<%=studentschedule.id%>" data-id="<%=studentschedule.id%>" data-details="<%=studentschedule.student.fname%> <%=studentschedule.student.lname%> @ <%=studentschedule.schedule.formatTimeSlot%>">
         <span class="schedule_buttons">
              <% if current_user.id == studentschedule.student.id %>
             <button type="button" class="delete_schedule glyphicon glyphicon-remove" data-dismiss="alert" aria-label="Close"><span aria-hidden="true"></span></button>

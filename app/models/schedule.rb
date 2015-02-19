@@ -2,9 +2,9 @@ class Schedule < ActiveRecord::Base
 
   def formatTimeSlot
       #%d/%m/%Y
-      textOut = start_datetime.strftime("%H:%M")
+      textOut = start_datetime.strftime("%I:%M %p")
       textOut<<" - "
-      textOut << end_datetime.strftime("%H:%M")
+      textOut << end_datetime.strftime("%I:%M %p")
   end
 
   def to_date_of_week

@@ -9,6 +9,7 @@ var app_module = function(){
     }
 
     var timeSlotArg = null;
+    var apptDetails = null;
 
     var redirectWindow = function(path){
       window.location.replace(path);
@@ -83,6 +84,11 @@ var app_module = function(){
       if (response.error){
         onError(response);
       }else{
+        if(apptDetails!=null){
+          alert("You have accepted the following appointment:\n" + apptDetails);
+          apptDetails = null;
+        }
+
         redirectWindow(response.path);
       }
 
@@ -93,9 +99,14 @@ var app_module = function(){
       return target.attr("data-id");
     }
 
+    var getDetailsForId = function(id){
+      return $("#calendar-listing-"+id).attr("data-details");
+    }
+
     //TODO move this into a helper delete/accept module
     var acceptSchedule = function(e){
       var id = getScheduleIfFromEvent(e);
+      apptDetails = getDetailsForId(id);
         $.ajax({
            url: "/group/"+getCurrentGroupId()+"/schedule/accept.json/" +id,
             type: "POST",
