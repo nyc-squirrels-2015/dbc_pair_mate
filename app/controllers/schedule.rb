@@ -57,3 +57,26 @@ post '/group/:id/schedule/accept.json/:s_id' do |id,s_id|
 
   {path: "/group/#{id}/schedule"}.to_json
 end
+
+
+post '/group/:id/schedule/new.json' do |group_id|
+  if current_user == nil
+    return 401 #not authorized
+  end
+  details = JSON.parse(params[:timeslot]);
+
+  content_type :json
+  begin
+    st_time = DateTime.strptime(details["unparsedString"], '%m/%d %I:%M %p')
+    end_time = st_time + 1.hour
+    agenda = details["agenda"]
+    p "st_time: #{st_time}"
+
+    schedule = StudentSchedule.create_new(current_user, st_time,end_time, agenda, group_id);
+  rescue Exception => e
+    print e;
+    return {error: e.to_s}.to_json
+  end
+
+  {path: "/group/#{group_id}/schedule"}.to_json
+end

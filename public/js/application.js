@@ -23,4 +23,22 @@ $(document).ready(function() {
         dispatchEvent(new CustomEvent("delete_schedule_clicked", {detail:e}));
     });
 
+
+    $("body").on("change", "#schedule-time-inputs", function(e){
+        dispatchEvent(new CustomEvent("datetime_changed", {detail:e}));
+    });
+
+    $("body").on("change" ,"#schedule-agenda-inputs", function(e){
+        dispatchEvent(new CustomEvent("agenda_changed", {detail:e}));
+    });
+
+    $("body").on("click", "#submit_schedule_button", function(e){
+        dispatchEvent(new CustomEvent("submit_clicked", {detail:e}));
+    });
+
+    // if($('#schedule-time-inputs').length>0){
+    //   var options = {};
+    //   $('#schedule-time-inputs').timepicker(options);
+    // }
+
 });

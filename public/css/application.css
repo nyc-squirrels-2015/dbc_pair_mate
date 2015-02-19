@@ -17,3 +17,11 @@ body{
 .calendar-day-header{
     border-bottom: 1px solid gray;
 }
+
+.hide{
+    display: none;
+}
+
+.left-margin{
+    margin-left: 2%;
+}
