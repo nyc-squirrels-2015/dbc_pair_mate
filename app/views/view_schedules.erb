@@ -1,10 +1,30 @@
-<div class="row" class="listing-header" data-group-id="<%=@group_id%>">
-  <div class="alert alert-success" role="alert">Click on the check box accross a pairing to accept it</div>
+<div class="row" class="listing-header" id="listing-header" data-group-id="<%=@group_id%>">
+  <div class="alert alert-success" role="alert">Click on the check box across a pairing to accept it</div>
 <!--   Filter panel and button
  -->
   <div class="col-md-12 calendar-row">
      <button type="button" class="btn btn-default" id="add_button">Add Your Availabilty</button>
   </div>
+</div>
+
+<!-- initially this is invisible -->
+<div class="row listing-add-new field-margin" style="display: none;"  id="listing-add-new">
+
+
+  <div class="panel panel-default">
+  <div class="panel-body">
+      <div class="col-md-12 calendar-row">
+        <label for="inputEmail" >Enter Date/Time:</label>
+        <!-- data-time-format="H:i:s" -->
+        <input  id="schedule-time-inputs" type="text"  placeHolder="mm/dd HH:MM pm"/>
+        <label class="left-margin" for="inputEmail" >Agenda:</label>
+         <input id="schedule-agenda-inputs" type="text"  placeHolder="optional"/>
+         <button type="button" class="btn btn-default left-margin" id="submit_schedule_button">Submit</button>
+      </div>
+
+  </div>
+</div>
+
 </div>
 
 <div class="row">

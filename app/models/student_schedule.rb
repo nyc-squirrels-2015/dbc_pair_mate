@@ -10,4 +10,14 @@ class StudentSchedule < ActiveRecord::Base
         destroy
     end
   end
+
+  class<<self
+    def create_new(student, start_datetime, end_datetime, agenda, group_id)
+      p "create new schedule"
+      StudentSchedule.transaction do
+        schedule = Schedule.create({start_datetime: start_datetime, end_datetime: end_datetime, agenda: agenda})
+        create({student: student, schedule: schedule, group_id: group_id})
+      end
+    end
+  end
 end
